@@ -26,18 +26,18 @@ const niveles = {
 const logger = winston.createLogger({
   levels: niveles.nivel,
   transports: [
-    // new winston.transports.Console({
-    //   level: "http",
-    //   format: winston.format.combine(
-    //     winston.format.colorize({ colors: niveles.colores }),
-    //     winston.format.simple()
-    //   ),
-    // }),
+    new winston.transports.Console({
+      level: mode == "desarrollo" ? "debug" : "info",
+      format: winston.format.combine(
+        winston.format.colorize({ colors: niveles.colores }),
+        winston.format.simple()
+      ),
+    }),
 
     //Agregamos un nuevo transporte:
     new winston.transports.File({
-      filename: mode == "desarrollo" ? "./dev.log" : "./prod.log",
-      level: mode == "desarrollo" ? "debug" : "info",
+      filename: mode == "desarrollo" ? "./error_dev.log" : "./error_prod.log",
+      level: "error",
       format: winston.format.simple(),
     }),
   ],
