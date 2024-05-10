@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());
 
-// winston
+// winston logger
 app.use(addLogger);
 
 // Handlebars config
@@ -36,7 +36,6 @@ app.engine(
     helpers: helper,
   })
 );
-
 app.set("view engine", "handlebars");
 app.set("views", "src/views");
 
